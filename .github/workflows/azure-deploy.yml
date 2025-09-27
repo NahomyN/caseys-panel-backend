@@ -31,9 +31,13 @@ jobs:
 
     - name: Create deployment package
       run: |
-        # Remove unnecessary files for deployment
+        # Create a deployment-ready package
+        # Remove development files but keep essential deployment files
         rm -rf .git .github __pycache__ *.pyc .env.example
-        ls -la
+        # Ensure requirements.txt is present for Azure
+        ls -la requirements.txt
+        echo "Contents of requirements.txt:"
+        cat requirements.txt
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
