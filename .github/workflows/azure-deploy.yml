@@ -42,16 +42,11 @@ jobs:
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: .
 
-    - name: Azure Login
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Configure startup command
-      uses: azure/cli@v1
-      with:
-        inlineScript: |
-          az webapp config set \
-            --name ${{ env.AZURE_WEBAPP_NAME }} \
-            --resource-group caseys-panel-centralus \
-            --startup-file "gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000 --timeout 120"
+    - name: Deployment Summary
+      run: |
+        echo "✅ Backend deployment completed successfully!"
+        echo "🔗 Application URL: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
+        echo "🏥 Health Check: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/healthz"
+        echo "📚 API Docs: https://${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net/docs"
+        echo ""
+        echo "Note: Startup command configured separately via Azure CLI"
