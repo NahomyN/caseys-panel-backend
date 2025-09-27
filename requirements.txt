@@ -12,3 +12,4 @@ prometheus-client==0.20.0
 alembic==1.13.2
 langgraph==0.2.34
 google-auth==2.35.0
+google-auth-oauthlib==1.2.1
