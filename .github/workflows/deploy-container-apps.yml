@@ -20,12 +20,9 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Log in to Azure
-      uses: azure/login@v2
+      uses: azure/login@v1
       with:
-        client-id: f9965b70-3a23-4b26-9100-bb40262ca2ca
-        tenant-id: 5ca9d7a7-a81f-4372-9720-9277fe2161fe
-        subscription-id: 024e012f-3ef2-419f-a09e-49d4db72d2f0
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Log in to Container Registry
       run: |
